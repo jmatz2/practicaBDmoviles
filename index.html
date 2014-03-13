@@ -1,0 +1,717 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>Aplic. Web de jQuery Mobile</title>
+<link href="jquery-mobile/jquery.mobile-1.0.min.css" rel="stylesheet" type="text/css"/>
+<script src="jquery-mobile/jquery-1.6.4.min.js" type="text/javascript"></script>
+<script src="jquery-mobile/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+function idioma(){
+var lenguaje = document.getElementById("idioma").selectedIndex;
+
+var variables =[document.getElementById("lbpais"), document.getElementById("lbaeropuerto"), document.getElementById("lbpais2"), document.getElementById("lbaeropuerto2"), document.getElementById("lborigen"), document.getElementById("lbdestino"), document.getElementById("lbestilo"), document.getElementById("lbsencillo"), document.getElementById("lbredondo"), document.getElementById("lbsalida"), document.getElementById("lbregreso"), document.getElementById("lbaerolinea"), document.getElementById("consultar"), document.getElementById("lbpago")];
+
+var ingles =["Country:","Airport:","Country:","Airport:","From:","To:","Style:","Simple","Round Trip","Exit:","Return:","Airline:","Checking Flights","Currency:"];
+var frances =["Pays:","Aéroport:","Pays:","Aéroport:","Origine:","Destination:","Style:","Simple","Round","Sortie:","Retour:","Aérienne","Vérifiez Vols","Monnaie:"];
+var aleman =["Land:","Flughafen:","Land:","Flughafen:","Herkunft:","Ziel:","Stil:","Einfach","Runde","Ausgang:","Rückkehr:","Fluggesellschaft:","Überprüfen Flüge","Währung:"];
+var español =["País:","Aeropuerto:","País:","Aeorpuerto:","Origen:","Destino:","Estilo:","Sencillo","Redondo","Salida","Regreso","Aerolineas:","Consultar Vuelos","Moneda:"];
+var c=0;
+var fondo = document.getElementById("bandera");
+if(lenguaje=="1"){
+fondo.src="inglaterra.jpg";
+while(c<variables.length){
+	variables[c].innerHTML= ingles[c];
+	c++;
+	
+	}
+}
+
+if(lenguaje=="2"){
+while(c<variables.length){
+fondo.src="francia.jpg";
+	variables[c].innerHTML= frances[c];
+	c++;
+	}
+}
+if(lenguaje=="3"){
+    fondo.src="alemania.jpg";
+while(c<variables.length){
+	variables[c].innerHTML= aleman[c];
+	c++;
+	}
+}
+if(lenguaje=="0"){
+    fondo.src="españa.jpg";
+while(c<variables.length){
+	variables[c].innerHTML= español[c];
+	c++;
+	}
+}
+}
+function pais(){
+	var pais = document.getElementById("pais").selectedIndex;
+	var aeropuertos = document.getElementById("aeropuerto");
+	var aAlemania=["Frankfurt","Hamburgo","Colonia","Berlin","Munich","Gelserkirchen","Leizig"];
+	}
+	var v=0;
+	while (v<aAlemania.length){
+		aeropuertos.add(aAlemania[v]);
+		}
+	if(pais==0){
+		
+		}
+function deshabilitar(){
+	var fecha = document.getElementById("Regreso");
+	fecha.disabled("enabled");
+	}
+function habilitar(){
+	var fecha = document.getElementById("Regreso");
+	fecha.disabled(false);
+	}
+	function consultar(){
+		var componentes =[document.getElementById("aeropuertoOrigen"),document.getElementById("aeropuertoDestino"),document.getElementById("salida"),document.getElementById("regreso")];
+		var or = componentes[0].selectedIndex;
+		var origen = componentes[0].options(origen);
+		alert("Select * from vuelos where (origen='"+or+"')" );
+		}
+</script>
+</head> 
+<body> 
+
+<div data-role="page" id="page">
+	<div data-role="header">
+		<h1>FlyApp</h1>
+	</div>
+
+		
+       <div data-role="content" style="background-color:#DBE5FE">
+       <table>
+       <tr>
+       <td>
+        <img id="bandera" src="españa.jpg" width="40px" height="20px"/>
+        </td>
+        <td>
+        <select id="idioma" onChange="idioma()" width="50px">
+        <option>Español</option>
+        <option>English</option> 
+        <option>Français</option>
+        <option>Deutsch</option>
+        </select>
+        </td>
+        </tr>
+        </table>
+        </div>
+        
+       <div data-role="content" style="background-color:#CAD8FE">
+       <table>
+       <tr>
+       <td>
+       <label for="lborigen" id="lborigen" >Origen:</label>
+       </td>
+       </tr>
+       <tr>
+       <td><label for="lbpais" id="lbpais" >País:</label>       </td>
+       <td>
+         <select id="pais"  onChange="pais()" align="center" width="50px">
+        <option>Alemania</option>
+        <option>España</option>
+        <option>Estados Unidos</option>
+        <option>México</option> 
+        <option>Portugal</option>
+        <option>Suiza</option>
+        </select>
+         </td>
+         
+         <td><label for="lbaeropuerto" id="lbaeropuerto" >Aeropuerto:</label></td>
+         <td>
+         <select id="aeropuertoOrigen"  color:#003"align="center" width="50px">
+        <option>México DF</option>
+        <option>Monterrey NL</option>
+        <option>Mexicali BC</option>
+        <option>Acapulco GRO.</option> 
+        <option>Cancún QRO</option>
+        </select>
+        </td>
+    </tr>
+    </table>
+    </div>
+    
+    <div data-role="content" style="background-color:#DBE5FE">
+    <table>
+    <tr>
+    <td>
+    <label for="lbdestino" id="lbdestino" >Destino:</label>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <label for="lbpais2" id="lbpais2" >País:</label></td>
+    <td>
+    <select id="pais" onChange="pais()" align="center" width="50px">
+        <option>Alemania</option>
+        <option>España</option>
+        <option>Estados Unidos</option>
+        <option>México</option> 
+        <option>Portugal</option>
+        <option>Suiza</option>
+        </select>
+    </td>
+    <td>
+    <label for="lbaeropuerto2" id="lbaeropuerto2" >Aeropuerto:</label></td>
+    <td>
+    <select id="aeropuertoDestino"  color:#003"align="center" width="50px">
+        <option>México DF</option>
+        <option>Monterrey NL</option>
+        <option>Mexicali BC</option>
+        <option>Acapulco GRO.</option> 
+        <option>Cancún QRO</option>
+        </select>
+     </td>
+     </tr>
+     </table>
+    </div>
+    
+    <div data-role="content" style="background-color:#CAD8FE">
+    <table>
+    <tr>
+    <td>
+    <label for="lbestilo" id="lbestilo" >Estilo:</label>
+    </td>
+    </tr>
+    <tr>
+    <td>
+       <input type="radio" id="sencillo" name="restilo" value="Sencillo" checked onChange="deshabilitar()"/>
+       <label for="lbsencillo" id="lbsencillo">Sencillo</label>
+       </td>
+       <td>
+       <input type="radio" id="redondo" name="restilo" value="Redondo" onChange="habilitar()"/>
+       <label for="lbredondo" id="lbredondo">Redondo</label>
+    </td>
+    </tr>
+    </table>
+    </div>
+    
+    <div data-role="content" style="background-color:#DBE5FE">
+        <table>
+        <tr>
+        <td width="200px">
+        <label for="lbsalida" id="lbsalida">Salida:</label>
+        </td>
+        <td>
+        <label for="lbregreso" id="lbregreso">Regreso:</label>
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <input type="date" id="salida"/>
+        </td>
+        <td>
+        <input type="date" id="regreso" readonly/>
+        </td>
+        </tr>
+        </table>
+        </div>
+        
+        <div data-role="content" style="background-color:#CAD8FE">
+        <table>
+        <tr>
+        <td>
+        <label for="lbaerolinea" id="lbaerolinea">Aerolineas:</label>
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <input type="Checkbox" value="Aeromexico" name="AE"/><img src="aeromexico.png"/>AeroMéxico
+        </td>
+        <td>
+        <input type="Checkbox" value="Volaris" name="AE"/><img src="volaris.png"/>Volaris
+  <td>
+        <input type="Checkbox" value="Interject" name="AE"/><img src="interject.png"/>Interject
+        </td>
+        <td>
+        <input type="Checkbox" value="Delta" name="AE"/><img src="delta.png"/>Delta
+        </td>
+        </tr>
+        
+        <tr>
+        <td>
+        </td>
+        </tr>
+        </table>
+        </div>
+        
+        
+        <ul data-role="listview" id="lista">
+        <li><a href="#vuelos" id="consultar">Consultar vuelos</a></li>
+        </ul>
+        
+        
+	<div data-role="footer">
+    <img src="volaris.jpg" id="publicidad"/>
+	</div>
+</div>
+
+
+
+
+
+<div data-role="page" id="vuelos">
+	<div data-role="header">
+		<h1>Vuelos disponibles</h1>
+	</div>
+	<div data-role="content" style="background-color:#CAD8FE">
+    
+    <table>
+    <tr>
+    <td>
+    <label for="lbpago" id="lbpago">Moneda:</label>
+    </td>
+    <td>
+    <select id="moneda"  color:#003 "align="center" width="50px">
+        <option>Pesos (MXN)</option>
+        <option>Dollar (USD)</option>
+        <option>Euro (€)</option>
+        </select>
+    </td>
+    </tr>
+    </table>
+    <br/>
+    <table border=1px>
+    
+    <tr style="background:#05047A; color:gray;" height="60px">
+    <td align="center"><label for="lbsale" id="lbsale">Sale:</label></td>
+    <td align="center"><label for="lbllega" id="lbllega">Llega:</label></td>
+    <td align="center"><label for="lbclase" id="lbclase">Clase:</label></td>
+    <td align="center"><label for="lbae" id="lbae">Aerolinea:</label></td>
+<td align="center"><label for="lbadquirir" id="lbadquirir">Adquirir:</label></td>
+    
+    </tr>
+    
+    <tr style="background:#CAD8FE">
+    <td align="center"><label for="lbsale" id="lbsale">México DF<br/>12 Feb 2014<br/>12:05</label></td>
+    <td align="center"><label for="lbllega" id="lbllega">Los Angeles<br/>12 Feb 2014<br/>18:45</label></td>
+    <td align="center"><label for="lbclase" id="lbclase">Primera Clase <br/>$1450.00<br/>47 Asientos Disp.</label></td>
+    <td align="center"><label for="lbae" id="lbae">AeroMéxico</label></td>
+<td>
+<a href="#comprar"><img src="carrito.png"<a/>
+</td>
+    
+    </tr>
+    
+ <tr style="background:#DBE5FE">
+    <td align="center"><label for="lbsale" id="lbsale">México DF<br/>12 Feb 2014<br/>13:05</label></td>
+    <td align="center"><label for="lbllega" id="lbllega">Los Angeles<br/>12 Feb 2014<br/>19:55</label></td>
+    <td align="center"><label for="lbclase" id="lbclase">Primera Clase <br/>$1600.00<br/>33 Asientos Disp.</label></td>
+    <td align="center"><label for="lbae" id="lbae">Volaris</label></td>
+<td>
+<a href="#comprar"><img src="carrito.png"<a/>
+</td>
+    
+    </tr>
+    
+    <tr style="background:#CAD8FE">
+    <td align="center"><label for="lbsale" id="lbsale">México DF<br/>12 Feb 2014<br/>12:05</label></td>
+    <td align="center"><label for="lbllega" id="lbllega">Los Angeles<br/>12 Feb 2014<br/>18:45</label></td>
+    <td align="center"><label for="lbclase" id="lbclase">Segunda Clase <br/>$850.00<br/>12 Asientos Disp.</label></td>
+    <td align="center"><label for="lbae" id="lbae">AeroMéxico</label></td>
+<td>
+<a href="#comprar"><img src="carrito.png"<a/>
+</td>
+    
+  </tr>
+  </table>  
+    
+	</div>
+	<div data-role="footer">
+		<h4>FlyApp</h4>
+	</div>
+</div>
+
+
+
+
+<div data-role="page" id="comprar">
+	<div data-role="header">
+		<h1>México DF - Los Angeles</h1>
+        <br/><h2>¿Quien viaja con usted?</h2>
+	</div>
+	<div data-role="content" style="background-color:#CAD8FE">
+    <label for="lbadulto" id="lbadulto">Adultos:</label>
+    <input type="number" min="1" max="10" id="adultos"/>
+    </div>
+    
+    <div data-role="content" style="background-color:#DBE5FE">
+    <label for="lbmenores" id="lbmenores">Menores (2-11 años):</label>
+    <input type="number" min="0" max="10" id="menores"/>
+</div>
+
+<div data-role="content" style="background-color:#CAD8FE">
+    <label for="lbinfantes" id="lbinfantes">Infantes (0-23 meses):</label>
+    <input type="number" min="0" max="10" id="infantes"/>
+    </div>
+    
+    <div data-role="content" style="background-color:#DBE5FE">
+    <input type="button" id="btnpersonas" value="Aceptar"/>
+    </div>
+    <br/>
+    
+    
+    <label for="lbadulto1" id="lbadulto1">Adulto 1:</label>
+    
+    <div data-role="content" style="background-color:#CAD8FE">
+    <label for="lbnombres" id="lbnombres">Nombres:</label>
+    <input type="text" id="nombres"/>
+    </div>
+    
+    <div data-role="content" style="background-color:#DBE5FE">
+    <label for="lbapellidos" id="lbapellidos">Apellidos:</label>
+    <input type="text" id="apellidos"/>
+    </div>
+    
+    <div data-role="content" style="background-color:#CAD8FE">
+    <label for="lbnacionalidad" id="lbnacionalidad">Nacionalidad:</label>
+    <input type="text" id="nacionalidad"/>
+    </div>
+    
+    <div data-role="content" style="background-color:#DBE5FE">
+    <label for="lbnacimiento" id="lbnacimiento">Fecha de Nacimiento:</label>
+    <input type="date"id="nacimiento"/>
+    </div>
+    
+    <div data-role="content" style="background-color:#CAD8FE">
+    <label for="lbcorreo" id="lbcorreo">E-mail:</label>
+    <input type="mail" id="mail"/>
+    </div>
+    
+    <div data-role="content" style="background-color:#DBE5FE">
+    <label for="lbtelefono" id="lbtelefono">Telefono:</label>
+    <input type="tel"id="tel"/>
+    </div>
+    
+    <br/>
+    <ul data-role="listview" id="lista">
+        <li><a href="#equipaje" id="s1">Siguiente</a></li>
+        </ul>
+	<div data-role="footer">
+		<h4>FlyApp</h4>
+	</div>
+</div>
+
+<div data-role="page" id="equipaje">
+	<div data-role="header">
+		<h1>México DF - Los Angeles</h1>
+        <br/><h2>Equipaje</h2>
+	</div>
+	<div data-role="content" style="background-color:#CAD8FE">
+    <table>
+    <tr>
+    <td width="200px">
+    <label for="lbmano" id="lbmano">Equipaje de mano (menos de 10kg):</label>
+    </td>
+    <td width="200px">
+    <input type="radio" name="mano"id="manosi" checked/>
+    <label for="lbmanosi" id="lbmanosi">Si</label>
+    </td>
+    <td width="200px">
+    <input type="radio" name="mano"id="manono"/>
+    <label for="lbmanono" id="lbmanono">No</label>
+    </td>
+    </tr>
+    </table>
+    </div>
+    
+    <div data-role="content" style="background-color:#DBE5FE">
+    <table>
+    <tr>
+    <td width="200px">
+    <label for="lbextra" id="lbextra">Equipaje extra (más de 10kg):</label>
+    </td>
+    <td width="200px">
+    <input type="radio" name="extra"id="extrasi" checked/>
+    <label for="lbextrasi" id="lbextrasi">Si</label>
+    </td>
+    <td width="200px">
+    <input type="radio" name="extra"id="extrano"/>
+    <label for="lbextrano" id="lbextrano">No</label>
+    </td>
+    </tr>
+    </table>
+    </div>
+    
+    <br/>
+    
+     <ul data-role="listview" id="lista">
+        <li><a href="#factura" id="s2">Siguiente</a></li>
+        </ul>
+	</div>
+	<div data-role="footer">
+		<h4>FlyApp</h4>
+	</div>
+	</div>
+	<div data-role="footer">
+		<h4>FlyApp</h4>
+	</div>
+</div>
+
+<div data-role="page" id="factura">
+	<div data-role="header">
+		<h1>México DF - Los Angeles</h1>
+        <br/><h2>Factura</h2>
+	</div>
+	<div data-role="content" style="background-color:#CAD8FE">
+    
+    <table>
+    <tr>
+    <td>
+    <table  style="background:#CAD8FE" width="100%">
+    <tr>
+    <td width="200px">
+    <label for="lbf1" id="lbf1">Concepto 1:</label>
+    </td>
+    <td width="200px">
+    <label for="lbc1" id="lbc1">$100.00</label>
+    </td>
+    </tr>
+    </table>
+    </td>
+    </tr>
+    <tr>
+    <td >
+    <table  style="background:#DBE5FE" width="100%">
+    <tr>
+    <td width="200px">
+    <label for="lbf2" id="lbf2">Concepto 2:</label>
+    </td>
+    <td width="200px">
+    <label for="lbc2" id="lbc2">$100.00</label>
+    </td>
+    </tr>
+    </table>
+    </td>
+    </tr>
+    
+    <tr>
+    <td>
+    <table  style="background:#CAD8FE" width="100%">
+    <tr>
+    <td width="200px">
+    <label for="lbf3" id="lbf3">Concepto 3:</label>
+    </td>
+    <td width="200px">
+    <label for="lbc3" id="lbc3">$100.00</label>
+    </td>
+    </tr>
+    </table>
+    </td>
+    </tr>
+    <tr>
+    <td >
+    <table  style="background:#DBE5FE" width="100%">
+    <tr>
+    <td width="200px">
+    <label for="lbf4" id="lbf4">Concepto 4:</label>
+    </td>
+    <td width="200px">
+    <label for="lbc4" id="lbc4">$100.00</label>
+    </td>
+    </tr>
+    </table>
+    </td>
+    </tr>
+    
+    
+    <tr>
+    <td>
+    <table  style="background:#CAD8FE" width="100%">
+    <tr>
+    <td width="200px">
+    <label for="lbf5" id="lbf5">Concepto 5:</label>
+    </td>
+    <td width="200px">
+    <label for="lbc5" id="lbc5">$100.00</label>
+    </td>
+    </tr>
+    </table>
+    </td>
+    </tr>
+    <tr>
+    <td >
+    <table  style="background:#DBE5FE" width="100%">
+    <tr>
+    <td width="200px">
+    <label for="lbf6" id="lbf6">Concepto 6:</label>
+    </td>
+    <td width="200px">
+    <label for="lbc6" id="lbc6">$100.00</label>
+    </td>
+    </tr>
+    </table>
+    </td>
+    </tr>
+    
+    <tr>
+    <td>
+    <table  style="background:#CAD8FE" width="100%">
+    <tr>
+    <td width="200px">
+    <label for="lbf7" id="lbf7">Concepto 7:</label>
+    </td>
+    <td width="200px">
+    <label for="lbc7" id="lbc7">$100.00</label>
+    </td>
+    </tr>
+    </table>
+    </td>
+    </tr>
+    <tr>
+    <td >
+    <table  style="background:#DBE5FE" width="100%">
+    <tr>
+    <td width="200px">
+    <label for="lb84" id="lbf8">Concepto 8:</label>
+    </td>
+    <td width="200px">
+    <label for="lbc8" id="lbc8">$100.00</label>
+    </td>
+    </tr>
+    </table>
+    </td>
+    </tr>
+   
+    </table>
+    <br/>
+    
+     <ul data-role="listview" id="lista">
+        <li><a href="#pagar" id="s3">Pagar</a></li>
+        </ul>
+	</div>
+	<div data-role="footer">
+		<h4>FlyApp</h4>
+	</div>
+</div>
+
+
+
+<div data-role="page" id="pagar">
+	<div data-role="header">
+		<h1>México DF - Los Angeles</h1>
+        <br/><h2>Pagar</h2>
+	</div>
+	
+    <div data-role="content" style="background-color:#CAD8FE">
+    <label for="lbptarjeta" id="lbptarjeta">Tarjeta:</label>
+    <select id="ptarjeta">
+    <option>Visa</option>
+    <option>Master Card</option>
+    <option>American Express</option>
+    </select>
+    </div>
+    
+    <div data-role="content" style="background-color:#DBE5FE">
+    <label for="lbpnombre" id="lbpnombre">Nombres del titular:</label>
+    <Input type="text" id="pnombre"/>
+    </div>
+    
+    <div data-role="content" style="background-color:#CAD8FE">
+    <label for="lbpapellido" id="lbpapellido">Apellidos del titular:</label>
+    <input type="text" id="papellido"/>
+    </div>
+    
+    <div data-role="content" style="background-color:#DBE5FE">
+    <label for="lbpnumero" id="lbpnumero">Número de tarjeta:</label>
+    <input type="number" id="pnumero"/>
+    </div>
+    
+    <div data-role="content" style="background-color:#CAD8FE">
+    <label for="lbpnip" id="lbpnip">NIP:</label>
+    <input type="number" id="pnip"/>
+    </div>
+    
+    <div data-role="content" style="background-color:#DBE5FE">
+    <label for="lbpfecha" id="lbpfecha">Fecha de vencimiento:</label>
+    <input type="date" id="pfecha"/>
+    </div>
+    </tr>
+    </table>
+    </td>
+    </tr>
+    
+    <div data-role="content" style="background-color:#CAD8FE">
+    <table>
+    <tr>
+    <td width="200px">
+    <label for="lbppais" id="lbppais">País:</label>
+    </td>
+    <td width="200px">
+    <select id="ppais">
+    <option>México</option>
+    <option>Estados Unidos</option>
+    <option>Canada</option>
+    <option>Brasil</option>
+    </select>
+    </td>
+    <td >
+    <td width="200px">
+    <label for="lbpprovinvia" id="lbpprivincia">Provincia:</label>
+    </td>
+    <td width="200px">
+    <select id="pprovincia">
+    <option>Aguas Calientes</option>
+    <option>Baja California Norte</option>
+    <option>Baja California Sur</option>
+    <option>Campeche</option>
+    </select>
+    </td>
+    </tr>
+    </table>
+    </div>
+    
+    <div data-role="content" style="background-color:#DBE5FE">
+    <label for="lbpcodigo" id="lbpcodigo">Código postal:</label>
+    <input type="number" id="pcodigo"/>
+    </div>
+    
+    <div data-role="content" style="background-color:#CAD8FE">
+    <label for="lbpdireccion" id="lbpdireccion">Dirección:</label>
+    <input type="text" id="pdireccion"/>
+    </div>
+
+    <div data-role="content" style="background-color:#DBE5FE">
+    <label for="lbptelefono" id="lbptelefono">Telefono:</label>
+    <input type="tel" id="ptelefono">
+    </div>
+    
+    <div data-role="content" style="background-color:#CAD8FE">
+    <label for="lbpmail" id="lbpmail">e-mail:</label>
+    <input type="mail" id="pmail">
+    </div>
+    
+    <div data-role="content" style="background-color:#DBE5FE">
+    <table  style="background:#DBE5FE" width="100%">
+    <tr>
+    <td width="200px">
+    <label for="lbpcorporativa" id="lbpcorporativa">¿Su tarjeta es corporativa?</label>
+    </td>
+    <td width="200px">
+    <input type="radio" id="pcorporativasi" name="pcorporativa">
+    <label for="lbpcorporativasi" id="lbpcorporativasi">Si</label>
+    </td>
+    <td width="200px">
+    <input type="radio" id="pcorporativano" name="pcorporativa">
+    <label for="lbpcorporativano" id="lbpcorporativano">No</label>
+    </td>
+    </tr>
+    </table>
+    </div>
+    
+    <a href="#pagar" id="btnPagar" data-role="button">Pagar</a>
+	</div>
+	<div data-role="footer">
+		<h4>FlyApp</h4>
+	</div>
+	</div>
+</div>
+</body>
+</html>
